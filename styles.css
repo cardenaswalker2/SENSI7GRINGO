@@ -149,19 +149,45 @@ body {
   white-space: nowrap;
 }
 
-/* NAVBAR TABS (Deslizamiento horizontal perfecto en móvil) */
-.nav-tabs-scroll {
+/* BOTÓN MENÚ HAMBURGUESA GAMING */
+.hamburger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 42px;
+  height: 42px;
+  background: rgba(255, 107, 0, 0.12);
+  border: 1px solid var(--border-glow);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  padding: 8px;
+  transition: var(--transition);
+  box-shadow: 0 0 12px rgba(255, 107, 0, 0.2);
+}
+
+.hamburger-btn:active {
+  transform: scale(0.95);
+  background: rgba(255, 107, 0, 0.25);
+}
+
+.hamburger-line {
+  display: block;
+  width: 22px;
+  height: 2.5px;
+  background-color: var(--color-orange-bright);
+  border-radius: 2px;
+  transition: var(--transition);
+}
+
+/* NAVBAR DESKTOP */
+.nav-tabs-desktop {
   display: flex;
   align-items: center;
   gap: 8px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-  padding: 4px 2px;
-  scrollbar-width: none;
-  max-width: 100%;
+  flex-wrap: wrap;
 }
-.nav-tabs-scroll::-webkit-scrollbar { display: none; }
 
 .tab-btn {
   display: inline-flex;
@@ -179,6 +205,165 @@ body {
   white-space: nowrap;
   flex-shrink: 0;
   transition: var(--transition);
+}
+
+/* ==========================================================================
+   DRAWER LATERAL MÓVIL (MODERNO & ELEGANTE)
+   ========================================================================== */
+.mobile-drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 998;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.mobile-drawer-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-drawer {
+  position: fixed;
+  top: 0;
+  right: -320px;
+  width: 300px;
+  max-width: 85vw;
+  height: 100vh;
+  background: #0d0d12;
+  border-left: 1px solid var(--border-glow);
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.9);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-drawer.active {
+  transform: translateX(-320px);
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 16px;
+  border-bottom: 1px solid var(--border-subtle);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.drawer-close-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  color: var(--color-gray-300);
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  font-size: 1.1rem;
+  font-weight: 900;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.drawer-close-btn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: #ef4444;
+  color: #fff;
+}
+
+.drawer-nav {
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.drawer-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  color: var(--color-gray-300);
+  font-family: var(--font-main);
+  font-size: 0.98rem;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+  transition: var(--transition);
+  width: 100%;
+}
+
+.drawer-link svg {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2.2;
+  color: var(--color-gray-400);
+  flex-shrink: 0;
+}
+
+.drawer-link:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 107, 0, 0.4);
+  color: var(--color-white);
+}
+
+.drawer-link:hover svg {
+  color: var(--color-orange-bright);
+}
+
+.drawer-link.active {
+  background: linear-gradient(135deg, rgba(255, 107, 0, 0.2) 0%, rgba(255, 140, 0, 0.1) 100%);
+  border-color: var(--color-orange);
+  color: var(--color-white);
+  box-shadow: 0 0 15px rgba(255, 107, 0, 0.3);
+}
+
+.drawer-link.active svg {
+  color: var(--color-orange-bright);
+}
+
+.drawer-pill {
+  margin-left: auto;
+  font-size: 0.68rem;
+  padding: 2px 7px;
+  background: var(--color-orange-soft);
+  color: var(--color-orange-bright);
+  border-radius: var(--radius-sm);
+  font-weight: 800;
+  border: 1px solid var(--border-glow);
+}
+
+.drawer-pill.vip {
+  background: rgba(168, 85, 247, 0.2);
+  color: #c084fc;
+  border-color: rgba(168, 85, 247, 0.4);
+}
+
+.drawer-footer {
+  padding: 16px;
+  border-top: 1px solid var(--border-subtle);
+  text-align: center;
+}
+
+.drawer-footer-text {
+  font-size: 0.75rem;
+  color: var(--color-gray-500);
+  font-weight: 600;
 }
 
 .tab-btn:hover {
@@ -962,18 +1147,21 @@ body {
    ========================================================================== */
 
 /* Tablets y pantallas medianas (≤ 900px) */
-@media (max-width: 900px) {
+/* Tablets y celulares (≤ 860px) */
+@media (max-width: 860px) {
   .header-content {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 10px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 14px;
   }
-  .brand-badge {
-    justify-content: center;
+
+  .nav-tabs-desktop {
+    display: none !important; /* Se ocultan las pestañas horizontales */
   }
-  .nav-tabs-scroll {
-    width: 100%;
-    justify-content: flex-start;
+
+  .hamburger-btn {
+    display: flex !important; /* Aparece el botón de hamburguesa elegante */
   }
 }
 
@@ -984,23 +1172,18 @@ body {
   }
   
   .header-main {
-    padding: 8px 0;
+    padding: 10px 0;
     margin-bottom: 16px;
   }
 
   .brand-logo-icon {
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 38px;
     font-size: 18px;
   }
 
   .brand-text-wrap h1 {
     font-size: 1.25rem;
-  }
-
-  .tab-btn {
-    padding: 7px 12px;
-    font-size: 0.85rem;
   }
 
   .hero-card {

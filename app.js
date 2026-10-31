@@ -98,24 +98,67 @@ document.addEventListener('DOMContentLoaded', () => {
   cargarRanking();
 });
 
-// Pestañas
+// Pestañas y Drawer de Navegación
 function initTabs() {
+  // Pestañas Desktop
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const tabId = btn.getAttribute('data-tab');
       cambiarTab(tabId);
     });
   });
+
+  // Enlaces del Drawer Móvil
+  document.querySelectorAll('.drawer-link').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tabId = btn.getAttribute('data-tab');
+      cambiarTab(tabId);
+      cerrarDrawer();
+    });
+  });
+
+  // Abrir Drawer con botón Hamburguesa
+  const btnHam = document.getElementById('btn-hamburger');
+  const btnClose = document.getElementById('btn-close-drawer');
+  const overlay = document.getElementById('mobile-overlay');
+
+  if (btnHam) btnHam.addEventListener('click', abrirDrawer);
+  if (btnClose) btnClose.addEventListener('click', cerrarDrawer);
+  if (overlay) overlay.addEventListener('click', cerrarDrawer);
+}
+
+function abrirDrawer() {
+  document.getElementById('mobile-drawer').classList.add('active');
+  document.getElementById('mobile-overlay').classList.add('active');
+  document.body.style.overflow = 'hidden'; // Evita scroll de fondo
+}
+
+function cerrarDrawer() {
+  const drawer = document.getElementById('mobile-drawer');
+  const overlay = document.getElementById('mobile-overlay');
+  if (drawer) drawer.classList.remove('active');
+  if (overlay) overlay.classList.remove('active');
+  document.body.style.overflow = '';
 }
 
 function cambiarTab(tabId) {
   AppState.activeTab = tabId;
+  
+  // Sincronizar botones desktop
   document.querySelectorAll('.tab-btn').forEach(b => {
     b.classList.toggle('active', b.getAttribute('data-tab') === tabId);
   });
+
+  // Sincronizar enlaces drawer
+  document.querySelectorAll('.drawer-link').forEach(b => {
+    b.classList.toggle('active', b.getAttribute('data-tab') === tabId);
+  });
+
+  // Mostrar sección activa
   document.querySelectorAll('.app-section').forEach(sec => {
     sec.style.display = (sec.id === `section-${tabId}`) ? 'block' : 'none';
   });
+
   if (tabId === 'history') cargarHistorial();
   if (tabId === 'ranking') cargarRanking();
 }
