@@ -25,37 +25,96 @@
         </div>
       </a>
 
-      <!-- Pestañas de navegación superiores con scroll horizontal fluido -->
-      <nav class="nav-tabs-scroll" aria-label="Navegación principal">
-        <button type="button" class="tab-btn active" data-tab="generator" id="tab-generator">
+      <!-- Botón Menú Hamburguesa para Móvil -->
+      <button type="button" class="hamburger-btn" id="btn-hamburger" aria-label="Abrir menú de navegación">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+
+      <!-- Pestañas de navegación superiores (Escritorio / Tablet) -->
+      <nav class="nav-tabs-desktop" aria-label="Navegación principal">
+        <button type="button" class="tab-btn active" data-tab="generator">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
           Generador
         </button>
-        <button type="button" class="tab-btn" data-tab="performance" id="tab-performance">
+        <button type="button" class="tab-btn" data-tab="performance">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
           Performance
         </button>
-        <button type="button" class="tab-btn" data-tab="aim" id="tab-aim">
+        <button type="button" class="tab-btn" data-tab="aim">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><line x1="22" x2="18" y1="12" y2="12"/><line x1="6" x2="2" y1="12" y2="12"/><line x1="12" x2="12" y1="6" y2="2"/><line x1="12" x2="12" y1="22" y2="18"/></svg>
           Aim & Calibración
         </button>
-        <button type="button" class="tab-btn" data-tab="players" id="tab-players">
+        <button type="button" class="tab-btn" data-tab="players">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           Pro Players
         </button>
-        <button type="button" class="tab-btn" data-tab="special" id="tab-special">
+        <button type="button" class="tab-btn" data-tab="special">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           Sensi Especial
         </button>
-        <button type="button" class="tab-btn" data-tab="ranking" id="tab-ranking">
+        <button type="button" class="tab-btn" data-tab="ranking">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
           Ranking
         </button>
-        <button type="button" class="tab-btn" data-tab="history" id="tab-history">
+        <button type="button" class="tab-btn" data-tab="history">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           Historial
         </button>
       </nav>
+    </div>
+
+    <!-- Menú Desplegable Móvil (Drawer Lateral / Overlay) -->
+    <div class="mobile-drawer-overlay" id="mobile-overlay"></div>
+    <div class="mobile-drawer" id="mobile-drawer">
+      <div class="drawer-header">
+        <div class="brand-badge">
+          <div class="brand-logo-icon">7G</div>
+          <div class="brand-text-wrap">
+            <h1>SENSI<span>7GRINGO</span></h1>
+            <div class="brand-tagline">Menú de Navegación</div>
+          </div>
+        </div>
+        <button type="button" class="drawer-close-btn" id="btn-close-drawer" aria-label="Cerrar menú">✕</button>
+      </div>
+
+      <nav class="drawer-nav">
+        <button type="button" class="drawer-link active" data-tab="generator">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
+          <span>Generador Maestro</span>
+          <span class="drawer-pill">Principal</span>
+        </button>
+        <button type="button" class="drawer-link" data-tab="performance">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          <span>Performance & FPS</span>
+        </button>
+        <button type="button" class="drawer-link" data-tab="aim">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><line x1="22" x2="18" y1="12" y2="12"/><line x1="6" x2="2" y1="12" y2="12"/><line x1="12" x2="12" y1="6" y2="2"/><line x1="12" x2="12" y1="22" y2="18"/></svg>
+          <span>Aim & Calibración</span>
+        </button>
+        <button type="button" class="drawer-link" data-tab="players">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span>Pro Players Verificados</span>
+        </button>
+        <button type="button" class="drawer-link" data-tab="special">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <span>Sensi Especial VIP</span>
+          <span class="drawer-pill vip">VIP</span>
+        </button>
+        <button type="button" class="drawer-link" data-tab="ranking">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+          <span>Ranking Comunidad</span>
+        </button>
+        <button type="button" class="drawer-link" data-tab="history">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>Mi Historial</span>
+        </button>
+      </nav>
+
+      <div class="drawer-footer">
+        <p class="drawer-footer-text">Sensi7gringo Mobile Edition © 2026</p>
+      </div>
     </div>
   </header>
 

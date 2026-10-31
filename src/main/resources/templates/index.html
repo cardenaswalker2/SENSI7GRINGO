@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -10,14 +10,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700;800&family=Rajdhani:wght@500;600;700;800;900&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" th:href="@{/css/main.css}">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
   <!-- HEADER FIJO Y NAVEGACIÓN -->
   <header class="header-main">
     <div class="header-content">
-      <a class="brand-badge" href="/" onclick="cambiarTab('generator'); return false;">
+      <a class="brand-badge" href="#" onclick="cambiarTab('generator'); return false;">
         <div class="brand-logo-icon">7G</div>
         <div class="brand-text-wrap">
           <h1>SENSI<span>7GRINGO</span></h1>
@@ -25,37 +25,96 @@
         </div>
       </a>
 
-      <!-- Pestañas de navegación superiores con scroll horizontal fluido -->
-      <nav class="nav-tabs-scroll" aria-label="Navegación principal">
-        <button type="button" class="tab-btn active" data-tab="generator" id="tab-generator">
+      <!-- Botón Menú Hamburguesa para Móvil -->
+      <button type="button" class="hamburger-btn" id="btn-hamburger" aria-label="Abrir menú de navegación">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+
+      <!-- Pestañas de navegación superiores (Escritorio / Tablet) -->
+      <nav class="nav-tabs-desktop" aria-label="Navegación principal">
+        <button type="button" class="tab-btn active" data-tab="generator">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
           Generador
         </button>
-        <button type="button" class="tab-btn" data-tab="performance" id="tab-performance">
+        <button type="button" class="tab-btn" data-tab="performance">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
           Performance
         </button>
-        <button type="button" class="tab-btn" data-tab="aim" id="tab-aim">
+        <button type="button" class="tab-btn" data-tab="aim">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><line x1="22" x2="18" y1="12" y2="12"/><line x1="6" x2="2" y1="12" y2="12"/><line x1="12" x2="12" y1="6" y2="2"/><line x1="12" x2="12" y1="22" y2="18"/></svg>
           Aim & Calibración
         </button>
-        <button type="button" class="tab-btn" data-tab="players" id="tab-players">
+        <button type="button" class="tab-btn" data-tab="players">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           Pro Players
         </button>
-        <button type="button" class="tab-btn" data-tab="special" id="tab-special">
+        <button type="button" class="tab-btn" data-tab="special">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           Sensi Especial
         </button>
-        <button type="button" class="tab-btn" data-tab="ranking" id="tab-ranking">
+        <button type="button" class="tab-btn" data-tab="ranking">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
           Ranking
         </button>
-        <button type="button" class="tab-btn" data-tab="history" id="tab-history">
+        <button type="button" class="tab-btn" data-tab="history">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           Historial
         </button>
       </nav>
+    </div>
+
+    <!-- Menú Desplegable Móvil (Drawer Lateral / Overlay) -->
+    <div class="mobile-drawer-overlay" id="mobile-overlay"></div>
+    <div class="mobile-drawer" id="mobile-drawer">
+      <div class="drawer-header">
+        <div class="brand-badge">
+          <div class="brand-logo-icon">7G</div>
+          <div class="brand-text-wrap">
+            <h1>SENSI<span>7GRINGO</span></h1>
+            <div class="brand-tagline">Menú de Navegación</div>
+          </div>
+        </div>
+        <button type="button" class="drawer-close-btn" id="btn-close-drawer" aria-label="Cerrar menú">✕</button>
+      </div>
+
+      <nav class="drawer-nav">
+        <button type="button" class="drawer-link active" data-tab="generator">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
+          <span>Generador Maestro</span>
+          <span class="drawer-pill">Principal</span>
+        </button>
+        <button type="button" class="drawer-link" data-tab="performance">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          <span>Performance & FPS</span>
+        </button>
+        <button type="button" class="drawer-link" data-tab="aim">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><line x1="22" x2="18" y1="12" y2="12"/><line x1="6" x2="2" y1="12" y2="12"/><line x1="12" x2="12" y1="6" y2="2"/><line x1="12" x2="12" y1="22" y2="18"/></svg>
+          <span>Aim & Calibración</span>
+        </button>
+        <button type="button" class="drawer-link" data-tab="players">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span>Pro Players Verificados</span>
+        </button>
+        <button type="button" class="drawer-link" data-tab="special">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <span>Sensi Especial VIP</span>
+          <span class="drawer-pill vip">VIP</span>
+        </button>
+        <button type="button" class="drawer-link" data-tab="ranking">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+          <span>Ranking Comunidad</span>
+        </button>
+        <button type="button" class="drawer-link" data-tab="history">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>Mi Historial</span>
+        </button>
+      </nav>
+
+      <div class="drawer-footer">
+        <p class="drawer-footer-text">Sensi7gringo Mobile Edition © 2026</p>
+      </div>
     </div>
   </header>
 
@@ -221,7 +280,7 @@
           <div class="result-header">
             <div class="result-device-badge">
               <h3 id="res-device-title">Samsung Galaxy S24 Ultra</h3>
-              <span id="res-style-badge">Velocidad / Rusheo</span>
+              <span id="res-style-badge">ALTA</span>
             </div>
             <div style="display: flex; gap: 8px;">
               <button type="button" id="btn-guardar-favorito" class="btn-secondary" title="Guardar en Favoritos" style="padding: 8px 14px;">
@@ -394,7 +453,7 @@
         </div>
 
         <div style="text-align: center; margin-top: 20px;">
-          <button type="button" id="btn-test-mira" class="btn-primary">
+          <button type="button" class="btn-primary" onclick="mostrarToast('Recomendación de arma: En UMP usa Mira 2X al 176 para tiros continuos al chaleco y cabeza.', 'info')">
             💡 Ver Recomendación de Arma
           </button>
         </div>
@@ -409,52 +468,8 @@
           <p>Sensibilidades documentadas y procedentes de transmisiones oficiales de figuras destacadas del competitivo.</p>
         </div>
 
-        <div class="players-grid">
-          <div th:each="player : ${proPlayers}" class="player-card">
-            <div class="player-header">
-              <div class="player-meta">
-                <div class="player-avatar" th:text="${#strings.substring(player.apodo,0,2)}">NO</div>
-                <div class="player-name-wrap">
-                  <h3 th:text="${player.apodo}">Nobru</h3>
-                  <span th:text="${player.equipo}">Fluxo</span>
-                </div>
-              </div>
-              <span class="player-badge" th:text="${player.insignia}">👑 Campeón</span>
-            </div>
-
-            <p style="font-size:0.85rem; color:#9ca3af;" th:text="'📱 ' + ${player.dispositivoReferencia} + ' (' + ${player.estiloJuego} + ')'">iPhone 15 Pro Max</p>
-
-            <div class="player-stats-table">
-              <div class="stat-item">
-                <div class="lbl">General</div>
-                <div class="val" th:text="${player.general}">195</div>
-              </div>
-              <div class="stat-item">
-                <div class="lbl">Punto Rojo</div>
-                <div class="val" th:text="${player.puntoRojo}">192</div>
-              </div>
-              <div class="stat-item">
-                <div class="lbl">Mira 2X</div>
-                <div class="val" th:text="${player.mira2x}">188</div>
-              </div>
-              <div class="stat-item">
-                <div class="lbl">Mira 4X</div>
-                <div class="val" th:text="${player.mira4x}">178</div>
-              </div>
-              <div class="stat-item">
-                <div class="lbl">Botón</div>
-                <div class="val" th:text="${player.botonDisparo} + '%'">44%</div>
-              </div>
-              <div class="stat-item">
-                <div class="lbl">DPI</div>
-                <div class="val" th:text="${player.dpi != null ? player.dpi : 'Estándar'}">Estándar</div>
-              </div>
-            </div>
-
-            <button type="button" class="btn-primary" style="width:100%; padding:10px; font-size:0.9rem;" th:attr="onclick='adaptarProPlayer(\'' + ${player.id} + '\')'">
-              ⚡ ADAPTAR A MI TELÉFONO
-            </button>
-          </div>
+        <div id="pro-players-grid" class="players-grid">
+          <!-- Renderizado dinámico desde app.js -->
         </div>
       </div>
     </section>
@@ -496,9 +511,7 @@
         </div>
 
         <div id="ranking-container" class="history-list">
-          <div class="empty-state">
-            <p>Cargando ranking de la comunidad...</p>
-          </div>
+          <!-- Poblado por app.js -->
         </div>
       </div>
     </section>
@@ -512,10 +525,7 @@
         </div>
 
         <div id="historial-container" class="history-list">
-          <div class="empty-state">
-            <p>No tienes sensibilidades generadas aún.</p>
-            <button type="button" class="btn-primary" style="margin-top:12px;" onclick="cambiarTab('generator')">Crear Mi Primera Sensi</button>
-          </div>
+          <!-- Poblado por app.js desde localStorage -->
         </div>
       </div>
     </section>
@@ -548,7 +558,7 @@
     </div>
   </footer>
 
-  <!-- SCRIPT INTERACTIVO -->
-  <script th:src="@{/js/main.js}"></script>
+  <!-- SCRIPT INTERACTIVO STANDALONE -->
+  <script src="app.js"></script>
 </body>
 </html>
