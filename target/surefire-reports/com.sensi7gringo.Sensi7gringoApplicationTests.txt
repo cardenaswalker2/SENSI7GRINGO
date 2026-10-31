@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.sensi7gringo.Sensi7gringoApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 17.82 s -- in com.sensi7gringo.Sensi7gringoApplicationTests

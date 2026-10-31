@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Sensi7gringo 🎮🔥 - Generador y Calibrador Maestro de Free Fire</title>
+  
+  <meta name="description" content="Generador inteligente de sensibilidades y calibración milimétrica para Free Fire adaptado a modelos Android e iPhone.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700;800&family=Rajdhani:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+
+  <!-- HEADER FIJO Y NAVEGACIÓN -->
+  <header class="header-main">
+    <div class="header-content">
+      <a class="brand-badge" href="/" onclick="cambiarTab('generator'); return false;">
+        <div class="brand-logo-icon">7G</div>
+        <div class="brand-text-wrap">
+          <h1>SENSI<span>7GRINGO</span></h1>
+          <div class="brand-tagline">Pro Aim Calibration</div>
+        </div>
+      </a>
+
+      <!-- Pestañas de navegación superiores con scroll horizontal fluido -->
+      <nav class="nav-tabs-scroll" aria-label="Navegación principal">
+        <button type="button" class="tab-btn active" data-tab="generator" id="tab-generator">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
+          Generador
+        </button>
+        <button type="button" class="tab-btn" data-tab="performance" id="tab-performance">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          Performance
+        </button>
+        <button type="button" class="tab-btn" data-tab="aim" id="tab-aim">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><line x1="22" x2="18" y1="12" y2="12"/><line x1="6" x2="2" y1="12" y2="12"/><line x1="12" x2="12" y1="6" y2="2"/><line x1="12" x2="12" y1="22" y2="18"/></svg>
+          Aim & Calibración
+        </button>
+        <button type="button" class="tab-btn" data-tab="players" id="tab-players">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Pro Players
+        </button>
+        <button type="button" class="tab-btn" data-tab="special" id="tab-special">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          Sensi Especial
+        </button>
+        <button type="button" class="tab-btn" data-tab="ranking" id="tab-ranking">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+          Ranking
+        </button>
+        <button type="button" class="tab-btn" data-tab="history" id="tab-history">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Historial
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTENEDOR PRINCIPAL DE MÓDULOS -->
+  <main class="app-container">
+
+    <!-- HERO PRESENTACIÓN -->
+    <section class="hero-card">
+      <div class="hero-pill">🔥 VERSIÓN COMPETITIVA 2026 - FREE FIRE</div>
+      <h2 class="hero-title">CALIBRA TU <span>SENSIBILIDAD EXACTA</span></h2>
+      <p class="hero-desc">
+        Ajuste milimétrico calculado según el panel, la tasa de refresco (Hz) y la respuesta táctil de tu dispositivo. No más disparos al aire.
+      </p>
+      <div class="hero-actions">
+        <button type="button" class="btn-primary" onclick="cambiarTab('generator')">
+          ⚡ GENERADOR MAESTRO
+        </button>
+        <button type="button" class="btn-secondary" onclick="cambiarTab('players')">
+          👑 VER PRO PLAYERS
+        </button>
+      </div>
+    </section>
+
+    <!-- MÓDULO B: GENERADOR MAESTRO DE SENSIBILIDAD -->
+    <section id="section-generator" class="app-section">
+      <div class="card-glass">
+        <div class="section-header">
+          <h2>🎯 GENERADOR <span>PERSONALIZADO</span></h2>
+          <p>Selecciona las características reales de tu teléfono para calcular el valor exacto de tus miras y botón.</p>
+        </div>
+
+        <form id="form-generador" onsubmit="return false;">
+          <div class="form-grid">
+            
+            <!-- 1. Sistema Operativo -->
+            <div class="form-group">
+              <label class="form-label">1. Sistema Operativo <span class="req">*</span></label>
+              <div class="radio-tile-group">
+                <label class="radio-tile-label selected">
+                  <input type="radio" name="sistemaOperativo" value="Android" checked>
+                  <span class="tile-title">🤖 Android</span>
+                  <span class="tile-sub">Samsung, Xiaomi...</span>
+                </label>
+                <label class="radio-tile-label">
+                  <input type="radio" name="sistemaOperativo" value="iOS">
+                  <span class="tile-title">🍎 iPhone (iOS)</span>
+                  <span class="tile-sub">Apple Retina</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- 2. Marca -->
+            <div class="form-group">
+              <label class="form-label" for="select-marca">2. Marca del Dispositivo <span class="req">*</span></label>
+              <select id="select-marca" class="custom-select" required>
+                <option value="">Cargando marcas disponibles...</option>
+              </select>
+            </div>
+
+            <!-- 3. Modelo Exacto -->
+            <div class="form-group">
+              <label class="form-label" for="select-modelo">3. Modelo Exacto <span class="req">*</span></label>
+              <select id="select-modelo" class="custom-select" required>
+                <option value="">Selecciona primero la marca</option>
+              </select>
+            </div>
+
+            <!-- 4. Nivel de Experiencia -->
+            <div class="form-group">
+              <label class="form-label">4. Nivel de Experiencia <span class="req">*</span></label>
+              <div class="radio-tile-group">
+                <label class="radio-tile-label">
+                  <input type="radio" name="nivelExperiencia" value="principiante">
+                  <span class="tile-title">Iniciado</span>
+                  <span class="tile-sub">Mayor control</span>
+                </label>
+                <label class="radio-tile-label selected">
+                  <input type="radio" name="nivelExperiencia" value="intermedio" checked>
+                  <span class="tile-title">Intermedio</span>
+                  <span class="tile-sub">Equilibrado</span>
+                </label>
+                <label class="radio-tile-label">
+                  <input type="radio" name="nivelExperiencia" value="avanzado">
+                  <span class="tile-title">Pro</span>
+                  <span class="tile-sub">Respuesta ágil</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- 5. Tipo de Sensibilidad -->
+            <div class="form-group">
+              <label class="form-label">5. Tipo de Sensibilidad <span class="req">*</span></label>
+              <div class="radio-tile-group">
+                <label class="radio-tile-label">
+                  <input type="radio" name="tipoSensibilidad" value="baja">
+                  <span class="tile-title">Baja</span>
+                  <span class="tile-sub">Estabilidad</span>
+                </label>
+                <label class="radio-tile-label">
+                  <input type="radio" name="tipoSensibilidad" value="media">
+                  <span class="tile-title">Media</span>
+                  <span class="tile-sub">Estándar</span>
+                </label>
+                <label class="radio-tile-label selected">
+                  <input type="radio" name="tipoSensibilidad" value="alta" checked>
+                  <span class="tile-title">Alta</span>
+                  <span class="tile-sub">Subida rápida</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- 6. Con DPI / Sin DPI -->
+            <div class="form-group" id="dpi-option-wrap">
+              <label class="form-label">6. Configuración de DPI <span class="req">*</span></label>
+              <div class="radio-tile-group">
+                <label class="radio-tile-label selected">
+                  <input type="radio" name="conDpi" value="true" checked>
+                  <span class="tile-title">Con DPI</span>
+                  <span class="tile-sub">Opciones desarrollador</span>
+                </label>
+                <label class="radio-tile-label">
+                  <input type="radio" name="conDpi" value="false">
+                  <span class="tile-title">Sin DPI</span>
+                  <span class="tile-sub">DPI de fábrica</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- 7. Preferencia de Juego -->
+            <div class="form-group" style="grid-column: 1 / -1;">
+              <label class="form-label">7. Estilo de Enfrentamiento <span class="req">*</span></label>
+              <div class="radio-tile-group style-group">
+                <label class="radio-tile-label">
+                  <input type="radio" name="preferenciaJuego" value="precision">
+                  <span class="tile-title">🎯 Precisión</span>
+                  <span class="tile-sub">Cabeza fija a media distancia</span>
+                </label>
+                <label class="radio-tile-label selected">
+                  <input type="radio" name="preferenciaJuego" value="velocidad" checked>
+                  <span class="tile-title">⚡ Velocidad / Rusheo</span>
+                  <span class="tile-sub">Giros rápidos y pared gloo</span>
+                </label>
+                <label class="radio-tile-label">
+                  <input type="radio" name="preferenciaJuego" value="equilibrio">
+                  <span class="tile-title">⚖️ Equilibrio</span>
+                  <span class="tile-sub">Para todas las armas</span>
+                </label>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- BOTÓN GENERAR -->
+          <div style="text-align: center; margin-top: 10px;">
+            <button type="button" id="btn-generar-sensi" class="btn-primary" style="width: 100%; max-width: 480px; padding: 18px 24px; font-size: 1.15rem;">
+              ⚡ GENERAR MI SENSIBILIDAD
+            </button>
+          </div>
+        </form>
+
+        <!-- TARJETA DE RESULTADO -->
+        <div id="resultado-sensibilidad" class="result-box">
+          <div class="result-header">
+            <div class="result-device-badge">
+              <h3 id="res-device-title">Samsung Galaxy S24 Ultra</h3>
+              <span id="res-style-badge">Velocidad / Rusheo</span>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button type="button" id="btn-guardar-favorito" class="btn-secondary" title="Guardar en Favoritos" style="padding: 8px 14px;">
+                ⭐ Favorito
+              </button>
+              <button type="button" id="btn-variar-config" class="btn-secondary" title="Generar ligera variación" style="padding: 8px 14px;">
+                🔄 Variación
+              </button>
+            </div>
+          </div>
+
+          <!-- Miras Principales -->
+          <div class="meters-grid">
+            <div class="meter-card">
+              <div class="scope-name">General</div>
+              <div class="scope-value" id="val-general">0</div>
+              <div class="meter-bar-track"><div class="meter-bar-fill" id="bar-general"></div></div>
+            </div>
+
+            <div class="meter-card">
+              <div class="scope-name">Punto Rojo (Red Dot)</div>
+              <div class="scope-value" id="val-reddot">0</div>
+              <div class="meter-bar-track"><div class="meter-bar-fill" id="bar-reddot"></div></div>
+            </div>
+
+            <div class="meter-card">
+              <div class="scope-name">Mira 2X</div>
+              <div class="scope-value" id="val-mira2x">0</div>
+              <div class="meter-bar-track"><div class="meter-bar-fill" id="bar-mira2x"></div></div>
+            </div>
+
+            <div class="meter-card">
+              <div class="scope-name">Mira 4X</div>
+              <div class="scope-value" id="val-mira4x">0</div>
+              <div class="meter-bar-track"><div class="meter-bar-fill" id="bar-mira4x"></div></div>
+            </div>
+
+            <div class="meter-card">
+              <div class="scope-name">Francotirador (AWM)</div>
+              <div class="scope-value" id="val-awm">0</div>
+              <div class="meter-bar-track"><div class="meter-bar-fill" id="bar-awm"></div></div>
+            </div>
+
+            <div class="meter-card">
+              <div class="scope-name">Cámara 360 / Olhadinha</div>
+              <div class="scope-value" id="val-olhadinha">0</div>
+              <div class="meter-bar-track"><div class="meter-bar-fill" id="bar-olhadinha"></div></div>
+            </div>
+          </div>
+
+          <!-- Botón de Disparo y DPI Sugerido -->
+          <div class="special-badges-row">
+            <div class="badge-info-pill">
+              <span class="lbl">🔘 Botón de Disparo (%)</span>
+              <span class="val" id="val-boton">45%</span>
+            </div>
+            <div class="badge-info-pill">
+              <span class="lbl">📐 DPI Recomendado</span>
+              <span class="val" id="val-dpi">540</span>
+            </div>
+          </div>
+
+          <!-- Explicación Técnica -->
+          <div class="tech-explanation">
+            <p id="res-explicacion">
+              Calibración calculada considerando la frecuencia de muestreo táctil y el ancho de panel de tu dispositivo.
+            </p>
+          </div>
+
+          <!-- Acciones -->
+          <div class="result-actions">
+            <button type="button" id="btn-copiar-config" class="btn-primary" style="flex: 1;">
+              📋 COPIAR TODA LA CONFIGURACIÓN
+            </button>
+            <button type="button" class="btn-secondary" onclick="cambiarTab('aim')">
+              🎯 VER GUÍA DE TIRO
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MÓDULO D: PERFORMANCE & DIAGNÓSTICO -->
+    <section id="section-performance" class="app-section" style="display: none;">
+      <div class="card-glass">
+        <div class="section-header">
+          <h2>⚡ PERFORMANCE & <span>OPTIMIZACIÓN REAL</span></h2>
+          <p>
+            Diagnóstico de pantalla, tasa de refresco y guía técnica certificada para reducir latencia táctil en Free Fire.
+          </p>
+        </div>
+
+        <div class="diagnostic-container">
+          <div class="diagnostic-item">
+            <div class="diagnostic-icon">📱</div>
+            <div class="diagnostic-info">
+              <h4>Tasa de Refresco Óptima</h4>
+              <p>Activa 90Hz / 120Hz en los ajustes de pantalla de tu teléfono para suavidad máxima.</p>
+            </div>
+          </div>
+
+          <div class="diagnostic-item">
+            <div class="diagnostic-icon">🚀</div>
+            <div class="diagnostic-info">
+              <h4>Gestión de Memoria RAM</h4>
+              <p>Cierra aplicaciones en segundo plano antes de abrir Free Fire para evitar caídas de FPS.</p>
+            </div>
+          </div>
+
+          <div class="diagnostic-item">
+            <div class="diagnostic-icon">📶</div>
+            <div class="diagnostic-info">
+              <h4>Estabilidad de Conexión</h4>
+              <p>Juega en redes Wi-Fi 5GHz o con datos móviles 4G/5G con buena cobertura para ping constante.</p>
+            </div>
+          </div>
+
+          <div class="diagnostic-item">
+            <div class="diagnostic-icon">🧹</div>
+            <div class="diagnostic-info">
+              <h4>Caché del Juego</h4>
+              <p>Borra la memoria caché de Free Fire desde Ajustes > Aplicaciones cada 15 días.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Consola de Diagnóstico en Vivo -->
+        <h3 style="font-size: 1.1rem; text-transform: uppercase; margin-bottom: 10px;">Consola de Diagnóstico de Dispositivo</h3>
+        <div id="opt-console-log" class="opt-console">
+          <div class="console-line info">> Listo para iniciar diagnóstico técnico del dispositivo y navegador...</div>
+        </div>
+
+        <button type="button" id="btn-iniciar-diagnostico" class="btn-primary" style="width: 100%;">
+          🔍 INICIAR DIAGNÓSTICO TÉCNICO
+        </button>
+      </div>
+    </section>
+
+    <!-- MÓDULO E: AIM & CALIBRACIÓN -->
+    <section id="section-aim" class="app-section" style="display: none;">
+      <div class="card-glass">
+        <div class="section-header">
+          <h2>🎯 AIM & <span>CALIBRACIÓN DE MIRA</span></h2>
+          <p>Consejos técnicos y métodos de arrastre recomendados para dominar el tiro a la cabeza.</p>
+        </div>
+
+        <div class="form-grid">
+          <div class="card-glass" style="background: rgba(0,0,0,0.4);">
+            <h3 style="color:#ff851b; margin-bottom:8px;">1. Posición y Tamaño del Botón</h3>
+            <p style="color:#d1d5db; font-size:0.95rem; line-height: 1.5;">
+              Coloca el botón de disparo ligeramente abajo del centro derecho de tu pantalla. 
+              Un tamaño de <strong>42% a 48%</strong> te otorga mayor área libre para realizar el levantamiento continuo sin que el dedo salga de la pantalla.
+            </p>
+          </div>
+
+          <div class="card-glass" style="background: rgba(0,0,0,0.4);">
+            <h3 style="color:#ff851b; margin-bottom:8px;">2. Técnica de Arrastre en "J"</h3>
+            <p style="color:#d1d5db; font-size:0.95rem; line-height: 1.5;">
+              Para escopetas (M1014, M1887) a corta distancia, baja el botón un milímetro y súbelo rápidamente dibujando una curva en "J". 
+              Esto desprende la mira del pecho y la clava directamente en el casco.
+            </p>
+          </div>
+
+          <div class="card-glass" style="background: rgba(0,0,0,0.4);">
+            <h3 style="color:#ff851b; margin-bottom:8px;">3. Disparos con Mira 2X y 4X</h3>
+            <p style="color:#d1d5db; font-size:0.95rem; line-height: 1.5;">
+              Con miras ópticas, la sensibilidad no debe ser extrema (rango 145-165). Realiza un jalón suave y progresivo, permitiendo que la asistencia del juego conecte los disparos en ráfaga.
+            </p>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 20px;">
+          <button type="button" id="btn-test-mira" class="btn-primary">
+            💡 Ver Recomendación de Arma
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- MÓDULO F: PRO PLAYERS -->
+    <section id="section-players" class="app-section" style="display: none;">
+      <div class="card-glass">
+        <div class="section-header">
+          <h2>👑 CONFIGURACIONES DE <span>PRO PLAYERS</span></h2>
+          <p>Sensibilidades documentadas y procedentes de transmisiones oficiales de figuras destacadas del competitivo.</p>
+        </div>
+
+        <div class="players-grid">
+          <div th:each="player : ${proPlayers}" class="player-card">
+            <div class="player-header">
+              <div class="player-meta">
+                <div class="player-avatar" th:text="${#strings.substring(player.apodo,0,2)}">NO</div>
+                <div class="player-name-wrap">
+                  <h3 th:text="${player.apodo}">Nobru</h3>
+                  <span th:text="${player.equipo}">Fluxo</span>
+                </div>
+              </div>
+              <span class="player-badge" th:text="${player.insignia}">👑 Campeón</span>
+            </div>
+
+            <p style="font-size:0.85rem; color:#9ca3af;" th:text="'📱 ' + ${player.dispositivoReferencia} + ' (' + ${player.estiloJuego} + ')'">iPhone 15 Pro Max</p>
+
+            <div class="player-stats-table">
+              <div class="stat-item">
+                <div class="lbl">General</div>
+                <div class="val" th:text="${player.general}">195</div>
+              </div>
+              <div class="stat-item">
+                <div class="lbl">Punto Rojo</div>
+                <div class="val" th:text="${player.puntoRojo}">192</div>
+              </div>
+              <div class="stat-item">
+                <div class="lbl">Mira 2X</div>
+                <div class="val" th:text="${player.mira2x}">188</div>
+              </div>
+              <div class="stat-item">
+                <div class="lbl">Mira 4X</div>
+                <div class="val" th:text="${player.mira4x}">178</div>
+              </div>
+              <div class="stat-item">
+                <div class="lbl">Botón</div>
+                <div class="val" th:text="${player.botonDisparo} + '%'">44%</div>
+              </div>
+              <div class="stat-item">
+                <div class="lbl">DPI</div>
+                <div class="val" th:text="${player.dpi != null ? player.dpi : 'Estándar'}">Estándar</div>
+              </div>
+            </div>
+
+            <button type="button" class="btn-primary" style="width:100%; padding:10px; font-size:0.9rem;" th:attr="onclick='adaptarProPlayer(\'' + ${player.id} + '\')'">
+              ⚡ ADAPTAR A MI TELÉFONO
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MÓDULO H: SENSI ESPECIAL -->
+    <section id="section-special" class="app-section" style="display: none;">
+      <div class="card-glass" style="border-color: rgba(255, 107, 0, 0.45); background: linear-gradient(180deg, rgba(255,107,0,0.1) 0%, rgba(18,18,22,0.9) 100%);">
+        <div class="section-header" style="text-align: center;">
+          <div class="hero-pill">✨ ACCESO ESPECIAL VIP</div>
+          <h2>SENSI <span>ESPECIAL EXCLUSIVA</span></h2>
+          <p>Configuración híbrida afinada para torneos, salas privadas y modo duelo de escuadras clasificatoria.</p>
+        </div>
+
+        <div style="max-width: 600px; margin: 0 auto; text-align: center;">
+          <div class="card-glass" style="margin-bottom: 24px; background: rgba(0,0,0,0.5);">
+            <h3 style="color:#ff851b; font-size:1.4rem; margin-bottom:12px;">🌟 Pack Sensi7gringo VIP</h3>
+            <p style="color:#d1d5db; margin-bottom:18px;">
+              Este perfil exclusivo incorpora la curva de respuesta táctil ultrarrápida para armas de un solo tiro (Desert Eagle, AC80, Woodpecker, M1887).
+            </p>
+            <div class="special-badges-row" style="justify-content:center;">
+              <div class="badge-info-pill"><span class="lbl">General</span><span class="val">196</span></div>
+              <div class="badge-info-pill"><span class="lbl">Red Dot</span><span class="val">194</span></div>
+              <div class="badge-info-pill"><span class="lbl">Botón</span><span class="val">44%</span></div>
+            </div>
+            <button type="button" class="btn-primary" onclick="copiarDirecto('196','194','190','182','44')" style="margin-top:14px; width:100%;">
+              📋 COPIAR SENSI ESPECIAL (GRATIS DEMO)
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MÓDULO G: RANKING -->
+    <section id="section-ranking" class="app-section" style="display: none;">
+      <div class="card-glass">
+        <div class="section-header">
+          <h2>🏆 RANKING DE LA <span>COMUNIDAD</span></h2>
+          <p>Configuraciones generadas y mejor valoradas por los usuarios de Sensi7gringo.</p>
+        </div>
+
+        <div id="ranking-container" class="history-list">
+          <div class="empty-state">
+            <p>Cargando ranking de la comunidad...</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MÓDULO I: HISTORIAL -->
+    <section id="section-history" class="app-section" style="display: none;">
+      <div class="card-glass">
+        <div class="section-header">
+          <h2>🕒 MI <span>HISTORIAL DE SENSIS</span></h2>
+          <p>Consulta, copia o administra las sensibilidades que has generado en esta sesión.</p>
+        </div>
+
+        <div id="historial-container" class="history-list">
+          <div class="empty-state">
+            <p>No tienes sensibilidades generadas aún.</p>
+            <button type="button" class="btn-primary" style="margin-top:12px;" onclick="cambiarTab('generator')">Crear Mi Primera Sensi</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER Y REDES SOCIALES -->
+  <footer class="footer-main">
+    <div class="app-container" style="padding-bottom: 0;">
+      <div class="brand-text-wrap" style="text-align: center; margin-bottom: 12px;">
+        <h2 style="font-size: 1.5rem; font-weight: 900;">SENSI<span style="color:#ff6b00;">7GRINGO</span></h2>
+        <p style="font-size: 0.85rem; color: #9ca3af;">Plataforma de recomendación técnica y calibración visual para Free Fire</p>
+      </div>
+
+      <div class="footer-socials">
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Instagram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="YouTube">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+        </a>
+        <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="TikTok">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+        </a>
+      </div>
+
+      <p class="footer-copy">
+        © 2026 Sensi7gringo. Todos los derechos reservados. Aplicación informativa y de recomendación táctil para jugadores. Free Fire es marca registrada de Garena International.
+      </p>
+    </div>
+  </footer>
+
+  <!-- SCRIPT INTERACTIVO -->
+  <script th:src="@{/js/main.js}"></script>
+</body>
+</html>

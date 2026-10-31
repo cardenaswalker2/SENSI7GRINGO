@@ -1,0 +1,17 @@
+com\sensi7gringo\services\AlgoritmoSensibilidadService.class
+com\sensi7gringo\controllers\WebViewController.class
+com\sensi7gringo\controllers\DispositivoRestController.class
+com\sensi7gringo\models\ProPlayer.class
+com\sensi7gringo\models\Dispositivo.class
+com\sensi7gringo\services\SensibilidadService.class
+com\sensi7gringo\dto\ApiResponse.class
+com\sensi7gringo\services\ProPlayerService.class
+com\sensi7gringo\dto\GenerarSensibilidadRequest.class
+com\sensi7gringo\repositories\InMemoryDataStore.class
+com\sensi7gringo\controllers\SensibilidadRestController.class
+com\sensi7gringo\repositories\DispositivoRepository.class
+com\sensi7gringo\config\MongoConfig.class
+com\sensi7gringo\models\Sensibilidad.class
+com\sensi7gringo\Sensi7gringoApplication.class
+com\sensi7gringo\services\DispositivoService.class
+com\sensi7gringo\repositories\SensibilidadRepository.class

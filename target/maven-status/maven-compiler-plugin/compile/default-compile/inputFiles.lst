@@ -1,0 +1,17 @@
+C:\Users\USUARIO\Music\CASA\Generadorsensi\src\main\java\com\sensi7gringo\config\MongoConfig.java
+C:\Users\USUARIO\Music\CASA\Generadorsensi\src\main\java\com\sensi7gringo\controllers\DispositivoRestController.java
+C:\Users\USUARIO\Music\CASA\Generadorsensi\src\main\java\com\sensi7gringo\controllers\SensibilidadRestController.java
+C:\Users\USUARIO\Music\CASA\Generadorsensi\src\main\java\com\sensi7gringo\controllers\WebViewController.java
+C:\Users\USUARIO\Music\CASA\Generadorsensi\src\main\java\com\sensi7gringo\dto\ApiResponse.java
+C:\Users\USUARIO\Music\CASA\Generadorsensi\src\main\java\com\sensi7gringo\dto\GenerarSensibilidadRequest.java
+C:\Users\USUARIO\Music\CASA\Generadorsensi\src\main\java\com\sensi7gringo\models\Dispositivo.java
+C:\Users\USUARIO\Music\CASA\Generadorsensi\src\main\java\com\sensi7gringo\models\ProPlayer.java
+C:\Users\USUARIO\Music\CASA\Generadorsensi\src\main\java\com\sensi7gringo\models\Sensibilidad.java
+C:\Users\USUARIO\Music\CASA\Generadorsensi\src\main\java\com\sensi7gringo\repositories\DispositivoRepository.java
+C:\Users\USUARIO\Music\CASA\Generadorsensi\src\main\java\com\sensi7gringo\repositories\InMemoryDataStore.java
+C:\Users\USUARIO\Music\CASA\Generadorsensi\src\main\java\com\sensi7gringo\repositories\SensibilidadRepository.java
+C:\Users\USUARIO\Music\CASA\Generadorsensi\src\main\java\com\sensi7gringo\Sensi7gringoApplication.java
+C:\Users\USUARIO\Music\CASA\Generadorsensi\src\main\java\com\sensi7gringo\services\AlgoritmoSensibilidadService.java
+C:\Users\USUARIO\Music\CASA\Generadorsensi\src\main\java\com\sensi7gringo\services\DispositivoService.java
+C:\Users\USUARIO\Music\CASA\Generadorsensi\src\main\java\com\sensi7gringo\services\ProPlayerService.java
+C:\Users\USUARIO\Music\CASA\Generadorsensi\src\main\java\com\sensi7gringo\services\SensibilidadService.java
